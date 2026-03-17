@@ -1,0 +1,39 @@
+# Home Assistant
+ha/config/home-assistant*.db*
+ha/config/*.log*
+ha/config/.ha_run.lock
+ha/config/.HA_VERSION
+ha/config/.storage/
+ha/config/deps/
+ha/config/www/community/
+ha/config/secrets.yaml
+ha/config/custom_components/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+.pip-cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Mosquitto
+mosquitto/data/
+mosquitto/log/
+
+# ESPHome (optional - can contain secrets)
+# esphome/.secrets.yaml
+
+# Docker
+.docker/
