@@ -3,11 +3,11 @@ services:
     container_name: esphome
     image: ghcr.io/esphome/esphome
     volumes:
-      - /path/to/esphome/config:/config
+      - ../esphome:/config
       - /etc/localtime:/etc/localtime:ro
     restart: always
     privileged: true
     network_mode: host
     environment:
-      - USERNAME=esphome
-      - PASSWORD=K3DHDH_qJu*VyrUMy@YLwLqTN4
+      - USERNAME=${ESPHOME_USERNAME}
+      - PASSWORD=${ESPHOME_PASSWORD}

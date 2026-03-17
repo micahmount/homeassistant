@@ -15,6 +15,13 @@ a Docker Compose based Home Assistant project.
 └── mosquitto/                          # MQTT broker config
 ```
 
+## ESPHome
+
+- Store configs in `esphome/` directory
+- Use `.yml` or `.yaml` extension
+- Use the ESPHome dashboard (port 6052) to flash devices
+- ESP32 devices auto-discover in HA via the ESPHome integration
+
 ## Build/Lint/Test Commands
 
 ### Docker Compose

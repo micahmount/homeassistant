@@ -37,3 +37,6 @@ mosquitto/log/
 
 # Docker
 .docker/
+
+# Environment variables
+.env
