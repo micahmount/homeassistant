@@ -13,7 +13,7 @@ This repo is designed to run on both your **server** (homelab) and
 
 | Machine | Services | Purpose |
 | ------- | --------- | -------- |
-| Server (homelab) | HA + ESPHome + Mosquitto | Running HA, dashboard access |
+| Server (homelab) | HA + Mosquitto + ESPHome | Running HA, dashboard access |
 | Laptop | ESPHome only | Flashing devices via USB |
 
 ## Quick Start
@@ -21,21 +21,25 @@ This repo is designed to run on both your **server** (homelab) and
 ### Server (Homelab)
 
 ```bash
-docker compose up -d homeassistant esphome mosquitto
+# Start HA + Mosquitto (unified compose)
+docker compose up -d
+
+# Start ESPHome
+cd esphome && docker compose up -d
 ```
 
 ### Laptop (Flashing)
 
 ```bash
-docker compose up -d esphome
+cd esphome && docker compose up -d
 ```
 
 ## Services
 
 | Service | URL | Description |
 | ------- | --- | ----------- |
-| Home Assistant | <http://localhost:8123> | Main HA UI |
-| ESPHome | <http://localhost:6052> | Device flashing dashboard |
+| Home Assistant | http://localhost:8123 | Main HA UI |
+| ESPHome | http://localhost:6052 | Device flashing dashboard |
 | Mosquitto | localhost:1883 | MQTT broker |
 
 ## ESPHome
@@ -44,8 +48,8 @@ Store device configs in `esphome/` (version controlled).
 
 **Flashing workflow:**
 
-1. On **server**: ensure ESPHome container is running
-2. On **laptop**: `docker compose up -d esphome`
+1. On **server**: `docker compose -f esphome/compose.yml up -d`
+2. On **laptop**: `docker compose -f esphome/compose.yml up -d`
 3. Edit configs in `esphome/` locally (sync to server)
 4. Open ESPHome dashboard at server's IP (e.g., `http://192.168.1.x:6052`)
 5. Click the device → **Install** → select connected USB device
@@ -53,25 +57,26 @@ Store device configs in `esphome/` (version controlled).
 
 ## Configuration
 
-- HA config: `ha/config/`
+- HA config: `server/ha/config/`
 - ESPHome configs: `esphome/`
-- MQTT config: `mosquitto/config/`
+- MQTT config: `server/mosquitto/config/`
 
 ## Useful Commands
 
 ```bash
 # Server: start all services
-docker compose up -d homeassistant esphome mosquitto
+docker compose up -d
+cd esphome && docker compose up -d
 
 # Laptop: start ESPHome only
-docker compose up -d esphome
+cd esphome && docker compose up -d
 
 # Restart Home Assistant (to reload HACS changes)
 docker compose restart homeassistant
 
 # View logs
 docker compose logs -f homeassistant
-docker compose logs -f esphome
+cd esphome && docker compose logs -f esphome
 ```
 
 ## Notes

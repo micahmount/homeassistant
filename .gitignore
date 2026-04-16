@@ -1,13 +1,13 @@
 # Home Assistant
-ha/config/home-assistant*.db*
-ha/config/*.log*
-ha/config/.ha_run.lock
-ha/config/.HA_VERSION
-ha/config/.storage/
-ha/config/deps/
-ha/config/www/community/
-ha/config/secrets.yaml
-ha/config/custom_components/
+server/ha/config/home-assistant*.db*
+server/ha/config/*.log*
+server/ha/config/.ha_run.lock
+server/ha/config/.HA_VERSION
+server/ha/config/.storage/
+server/ha/config/deps/
+server/ha/config/www/community/
+server/ha/config/secrets.yaml
+server/ha/config/custom_components/
 
 # Python
 __pycache__/
@@ -29,11 +29,13 @@ __pycache__/
 Thumbs.db
 
 # Mosquitto
-mosquitto/data/
-mosquitto/log/
+server/mosquitto/data/
+server/mosquitto/log/
 
-# ESPHome (optional - can contain secrets)
-# esphome/.secrets.yaml
+# ESPHome
+esphome/.esphome/
+esphome/.env
+esphome/secrets.yaml
 
 # Docker
 .docker/

@@ -1,0 +1,23 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    volumes:
+      - ./server/ha/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=America/Los_Angeles
+    restart: unless-stopped
+    network_mode: host
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./server/mosquitto/config:/mosquitto/config
+      - ./server/mosquitto/data:/mosquitto/data
+      - ./server/mosquitto/log:/mosquitto/log
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
